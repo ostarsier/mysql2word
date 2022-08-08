@@ -1,0 +1,2 @@
+- 配置config.properties
+- 执行: python Main.py
