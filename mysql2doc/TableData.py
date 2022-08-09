@@ -1,6 +1,3 @@
-__author__ = 'yanglikun'
-
-
 class Field:
     def __init__(self, name=None, type=None, comment=None, nullable=None, isPK=None):
         super().__init__()

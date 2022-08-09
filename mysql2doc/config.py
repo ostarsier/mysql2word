@@ -1,4 +1,4 @@
-__author__ = 'yanglikun'
+
 
 from collections import namedtuple
 import os

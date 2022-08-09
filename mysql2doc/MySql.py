@@ -1,13 +1,12 @@
-__author__ = 'yanglikun'
-
-import logging
+import sys
+import traceback
+from urllib.parse import quote
 
 from sqlalchemy import create_engine
-import jsonpickle
+
 from mysql2doc.TableData import *
-import sys, traceback
 from mysql2doc.config import dbConfigMap
-from urllib.parse import quote
+
 
 class MySql:
     def __init__(self):
@@ -16,9 +15,6 @@ class MySql:
             **dbConfigMap
         ) % quote(dbConfigMap['password'])
         self.engine = create_engine(dburl)
-
-    def showDatabases(self):
-        return [ele[0] for ele in self.engine.execute('show databases')]
 
     def showTables(self):
         return [ele[0] for ele in self.engine.execute('show tables')]
@@ -30,7 +26,8 @@ class MySql:
             field.name = fieldRow['Field']
             field.type = str(fieldRow['Type']).lower()
             field.nullable = fieldRow['Null']
-            field.isPK = fieldRow['Key'] == 'PRI'
+            field.nullable = 'Y' if fieldRow['Null'] == 'YES' else 'N'
+            field.isPK = 'Y' if fieldRow['Key'] == 'PRI' else 'N'
             field.comment = fieldRow['Comment']
             field.default = fieldRow['Default']
             field.extra = fieldRow['Extra']
