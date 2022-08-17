@@ -1,9 +1,7 @@
-
-
-from collections import namedtuple
 import os
+from collections import namedtuple
 
-DBConfig = namedtuple("dbConfig", ["userName", "password", "host", "port", "databaseName", "charset"])
+DBConfig = namedtuple("dbConfig", ["userName", "password", "host", "port", "databaseName", "charset", "dbs"])
 
 # 加载文件
 configMap = {}
@@ -18,11 +16,14 @@ dbConfig = DBConfig(configMap['db.userName'],
                     configMap['db.host'],
                     configMap['db.port'],
                     configMap['db.databaseName'],
-                    configMap['db.charset'])
+                    configMap['db.charset'],
+                    configMap['db.dbs']
+                    )
 
 
 def checkdbconfig(dbConfig):
-    if not (dbConfig.userName and dbConfig.password and dbConfig.host and dbConfig.databaseName and dbConfig.charset):
+    if not (
+            dbConfig.userName and dbConfig.password and dbConfig.host and dbConfig.databaseName and dbConfig.charset and dbConfig.dbs):
         raise Exception("先在config.properties配置数据库连接信息")
 
 

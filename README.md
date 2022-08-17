@@ -1,2 +1,2 @@
 - 配置config.properties
-- 执行: python Excel.py
+- 执行: python word.py
