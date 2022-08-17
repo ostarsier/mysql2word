@@ -3,7 +3,7 @@ from docxtpl import DocxTemplate
 
 from mysql2doc.MySql import MySql
 
-tpl = DocxTemplate('db_min.docx')
+tpl = DocxTemplate('db_min_1.docx')
 
 mysql = None
 try:
